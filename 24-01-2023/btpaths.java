@@ -14,17 +14,21 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer>list=new ArrayList<>();
-        inorder(root,list);
+    ArrayList<String> list=new ArrayList<>();
+    public List<String> binaryTreePaths(TreeNode root) {
+        String res="";
+        paths(root,res);
         return list;
     }
-    public void inorder(TreeNode root,ArrayList<Integer>list){
-        if(root==null){
+    void paths(TreeNode root, String res) {
+        if(root==null) return;
+        res=res+root.val;
+        if(root.left==null && root.right==null){
+            list.add(res);
             return;
         }
-        inorder(root.left,list);
-        list.add(root.val);
-        inorder(root.right,list);
+        res=res+"->";
+        paths(root.left,res);
+        paths(root.right,res);
     }
 }

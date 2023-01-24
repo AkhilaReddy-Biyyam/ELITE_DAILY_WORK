@@ -14,17 +14,17 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer>list=new ArrayList<>();
-        inorder(root,list);
-        return list;
-    }
-    public void inorder(TreeNode root,ArrayList<Integer>list){
-        if(root==null){
-            return;
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null && q==null){
+            return true;
         }
-        inorder(root.left,list);
-        list.add(root.val);
-        inorder(root.right,list);
+        if(p==null || q==null){
+            return false;
+        }
+        if(p.val!=q.val){
+            return false;
+        }
+        return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+        
     }
 }
